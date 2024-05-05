@@ -20,7 +20,7 @@ class ViewController: UITableViewController {
         }
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(resetGame))
-        
+
         if allWords.isEmpty {
             allWords = ["silkworm"]
         }
@@ -32,8 +32,8 @@ class ViewController: UITableViewController {
         usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
     }
-    
-    @objc func resetGame(){
+
+    @objc func resetGame() {
         startGame()
     }
 
@@ -86,6 +86,7 @@ class ViewController: UITableViewController {
     }
 
     func isReal(_ word: String) -> Bool {
+        if word.count == 0 { return false }
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
         let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
